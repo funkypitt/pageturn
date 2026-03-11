@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "PageTurn",
+  "version": "1.0.0",
+  "description": "Convert scrollable web pages into paginated content for e-ink readers. No animation, instant page turns.",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "commands": {
+    "toggle-pageturn": {
+      "suggested_key": {
+        "default": "Alt+P"
+      },
+      "description": "Toggle PageTurn paginated reading mode"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
