@@ -18,8 +18,32 @@
   let wrapper = null;
   let columnsEl = null;
   let indicator = null;
+  let closeBtn = null;
   let savedScrollY = 0;
   let savedBodyClasses = null;
+
+  // ── Tinta4Plus eInk ghost-clearing ──
+  var EINK_REFRESH_EVERY = 5; // refresh eInk display every N page turns
+  var EINK_API = "http://127.0.0.1:19849/refresh-eink";
+  var pageTurnsSinceRefresh = 0;
+  var tintaAvailable = null; // null = unknown, true/false after first probe
+
+  function probeEink() {
+    fetch(EINK_API, { method: "OPTIONS" })
+      .then(function () { tintaAvailable = true; })
+      .catch(function () { tintaAvailable = false; });
+  }
+
+  function maybeRefreshEink() {
+    if (tintaAvailable === false) return;
+    pageTurnsSinceRefresh++;
+    if (pageTurnsSinceRefresh >= EINK_REFRESH_EVERY) {
+      pageTurnsSinceRefresh = 0;
+      fetch(EINK_API, { method: "POST" }).catch(function () {
+        tintaAvailable = false;
+      });
+    }
+  }
 
   // ── Content extraction ──
   // Platform-specific selectors ordered by priority.
@@ -172,6 +196,7 @@
   function activate() {
     savedScrollY = window.scrollY;
     savedBodyClasses = document.body.className;
+    probeEink();
 
     const source = findContent();
     if (!source) return;
@@ -194,10 +219,18 @@
     indicator = document.createElement("div");
     indicator.id = "pageturn-indicator";
 
+    // Close button
+    closeBtn = document.createElement("button");
+    closeBtn.id = "pageturn-close";
+    closeBtn.textContent = "\u00D7";
+    closeBtn.title = "Exit reading mode (Esc)";
+    closeBtn.addEventListener("click", function () { deactivate(); });
+
     // Hide original content, append ours
     document.body.classList.add("pageturn-active");
     document.body.appendChild(wrapper);
     document.body.appendChild(indicator);
+    document.body.appendChild(closeBtn);
 
     // Calculate pages after layout
     requestAnimationFrame(() => {
@@ -222,6 +255,8 @@
     if (wrapper && wrapper.parentNode) wrapper.parentNode.removeChild(wrapper);
     if (indicator && indicator.parentNode)
       indicator.parentNode.removeChild(indicator);
+    if (closeBtn && closeBtn.parentNode)
+      closeBtn.parentNode.removeChild(closeBtn);
 
     document.body.classList.remove("pageturn-active");
     if (savedBodyClasses !== null) {
@@ -233,6 +268,7 @@
     wrapper = null;
     columnsEl = null;
     indicator = null;
+    closeBtn = null;
   }
 
   // Expose deactivate so re-injection can toggle off
@@ -263,9 +299,11 @@
   }
 
   function goToPage(n) {
+    var prev = currentPage;
     currentPage = Math.max(0, Math.min(n, totalPages - 1));
     columnsEl.style.transform = "translateX(-" + (currentPage * pageWidth) + "px)";
     updateIndicator();
+    if (currentPage !== prev) maybeRefreshEink();
   }
 
   function updateIndicator() {
