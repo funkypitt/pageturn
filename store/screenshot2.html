@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 800px; overflow: hidden;
+    background: #f8f7f5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .container {
+    text-align: center;
+    max-width: 900px;
+  }
+  h1 { font-size: 44px; font-weight: 700; margin-bottom: 16px; }
+  .subtitle { font-size: 20px; color: #555; margin-bottom: 48px; }
+  .features {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+  .feature {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+  .feature .icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .feature h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .feature p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+  }
+  .keys {
+    margin-top: 40px;
+    font-size: 15px;
+    color: #888;
+  }
+  .keys kbd {
+    background: #e8e6e3;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #333;
+    border: 1px solid #d0cec9;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>PageTurn</h1>
+  <p class="subtitle">Paginated reading for articles, blogs, and long-form content</p>
+
+  <div class="features">
+    <div class="feature">
+      <span class="icon">&#9889;</span>
+      <h3>Instant Page Turns</h3>
+      <p>Zero animation, zero scrolling. Pages swap instantly — perfect for e-ink screens that hate smooth scrolling.</p>
+    </div>
+    <div class="feature">
+      <span class="icon">&#9986;</span>
+      <h3>Clean Content</h3>
+      <p>Strips navbars, ads, sidebars, and subscribe prompts. Just the article text in clean, readable typography.</p>
+    </div>
+    <div class="feature">
+      <span class="icon">&#128218;</span>
+      <h3>Blog-Aware</h3>
+      <p>Optimized for Substack, Medium, WordPress, Ghost, Dev.to, Hashnode, and more. Works on any site.</p>
+    </div>
+  </div>
+
+  <div class="keys">
+    <kbd>&larr;</kbd> <kbd>&rarr;</kbd> arrow keys &nbsp;&middot;&nbsp; <kbd>Space</kbd> next page &nbsp;&middot;&nbsp; <kbd>Esc</kbd> exit &nbsp;&middot;&nbsp; <kbd>Alt+P</kbd> toggle
+  </div>
+</div>
+
+</body>
+</html>

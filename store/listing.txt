@@ -1,0 +1,32 @@
+SHORT DESCRIPTION (132 chars max):
+Turn any article into paginated pages. Instant page turns with arrow keys — no scrolling, no animation. Perfect for e-ink displays.
+
+DETAILED DESCRIPTION:
+
+PageTurn converts scrollable web pages into clean, paginated reading — like a book. Press arrow keys or swipe to flip between pages instantly, with zero animation or scrolling. Ideal for e-ink tablets, but great on any screen.
+
+HOW IT WORKS
+• Click the PageTurn icon or press Alt+P on any article
+• The page content is extracted and reflowed into screen-sized pages
+• Navigate with arrow keys, Space, or swipe gestures
+• Press Escape or tap ✕ to return to the original page
+
+OPTIMIZED FOR BLOGS
+Automatically detects article content on Substack, Medium, WordPress, Ghost, Dev.to, Hashnode, Blogger, and more. Strips navbars, sidebars, ads, and subscribe prompts — just the article text.
+
+WHY PAGETURN?
+• No animation — instant page swap, critical for e-ink refresh rates
+• Clean typography — serif font, generous line height, comfortable margins
+• Page counter — always know where you are (e.g. "3 / 12")
+• Keyboard + touch — arrow keys, Space, swipe, or tap screen edges
+• Adapts to any window size — resize or rotate and keep your place
+• Zero data collection — everything runs locally, no network requests
+
+KEYBOARD SHORTCUTS
+→ or Space: next page
+← or Shift+Space: previous page
+Home / End: first / last page
+Escape: exit reading mode
+Alt+P: toggle PageTurn
+
+CATEGORY: Productivity
